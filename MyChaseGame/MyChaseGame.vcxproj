@@ -129,7 +129,6 @@
   <ItemGroup>
     <ClCompile Include="Arena.cpp" />
     <ClCompile Include="Characters.cpp" />
-    <ClCompile Include="MyChaseGame.cpp" />
     <ClCompile Include="Play_game.cpp" />
   </ItemGroup>
   <ItemGroup>

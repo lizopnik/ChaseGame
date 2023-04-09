@@ -1,4 +1,3 @@
-#include "Arena.h"
 
 /*std::ostream& operator<<(std::ostream& out, const Arena& a) { //Альтернативный вывод
     for (int i = 0; i < a.width + 1; i++) {
@@ -23,7 +22,10 @@
     return out;
 }*/
 
-Arena::Arena(int l, int w, Prey* prey, Predator* predator) : prey(prey), predator(predator) {   
+#include "Arena.h"
+
+Arena::Arena(int l, int w, Prey* prey, Predator* predator) : prey(prey), predator(predator) {
+    //TODO: Проверка диапазона l w от (1 до 99)       
     length = l;
     width = w;
 
@@ -96,28 +98,28 @@ Arena::Arena(int l, int w, Prey* prey, Predator* predator) : prey(prey), predato
 
 void Arena::clearStep() {
     // Удаление жертвы
-    int preyX = (prey->getLocation().get_x() * 2) + 2;
-    int preyY = prey->getLocation().get_y() + 2;
+    int preyX = (prey->getLocation().getX() * 2) + 2;
+    int preyY = prey->getLocation().getY() + 2;
 
     field[view_length - preyY][preyX] = ' ';
     field[view_length - preyY][preyX - 1] = ' ';
 
     // Удаление хищника
-    int predX = (predator->getLocation().get_x() * 2) + 2;
-    int predY = predator->getLocation().get_y() + 2;
+    int predX = (predator->getLocation().getX() * 2) + 2;
+    int predY = predator->getLocation().getY() + 2;
 
     field[view_length - predY][predX] = ' ';
     field[view_length - predY][predX - 1] = ' ';
 }
 
 bool Arena::checkOverRun() {
-    int preyX = (prey->getLocation().get_x() * 2) + 2;
-    int preyY = prey->getLocation().get_y() + 2;
+    int preyX = (prey->getLocation().getX() * 2) + 2;
+    int preyY = prey->getLocation().getY() + 2;
 
     if (preyX > width || preyX < 1 || preyY > length || preyY < 1) return true;
 
-    int predX = (predator->getLocation().get_x() * 2) + 2;
-    int predY = predator->getLocation().get_y() + 2;
+    int predX = (predator->getLocation().getX() * 2) + 2;
+    int predY = predator->getLocation().getY() + 2;
 
     if (predX > width || predX < 1 || predY > length || predY < 1) return true;
 
@@ -138,15 +140,15 @@ Arena::~Arena() {
 std::ostream& operator<<(std::ostream& out, const Arena& a) {
 
     // Размещение жертвы
-    int preyX = (a.prey->getLocation().get_x() * 2) + 2;
-    int preyY = a.prey->getLocation().get_y() + 2;
+    int preyX = (a.prey->getLocation().getX() * 2) + 2;
+    int preyY = a.prey->getLocation().getY() + 2;
 
     a.field[a.view_length - preyY][preyX] = ')';
     a.field[a.view_length - preyY][preyX - 1] = '(';
 
     // Размещение хищника
-    int predX = (a.predator->getLocation().get_x() * 2) + 2;
-    int predY = a.predator->getLocation().get_y() + 2;
+    int predX = (a.predator->getLocation().getX() * 2) + 2;
+    int predY = a.predator->getLocation().getY() + 2;
 
     a.field[a.view_length - predY][predX] = '*';
     a.field[a.view_length - predY][predX - 1] = '*';
