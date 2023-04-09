@@ -1,7 +1,10 @@
 #pragma once
 
+#pragma once
+
 #include <iostream>
 #include "Characters.h"
+
 
 class Arena {
 
@@ -9,9 +12,18 @@ class Arena {
     Prey* prey;
     Predator* predator;
 
+    int view_length, view_width;
+    char** field;
+
 public:
+
     Arena(int l, int w, Prey* prey, Predator* predator);
-    int get_l() { return length; }
-    int get_w() { return width; }
+
+    void clearStep();
+    bool checkOverRun();
+
+    ~Arena();
+
     friend std::ostream& operator<<(std::ostream&, const Arena&);
+
 };
