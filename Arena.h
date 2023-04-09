@@ -5,12 +5,12 @@
 
 
 class Arena {
-    
+
     int length, width;
     Prey* prey;
     Predator* predator;
 
-    int view_length, view_width;   
+    int view_length, view_width;
     char** field;
 
 public:
@@ -19,13 +19,12 @@ public:
 
     void clearStep();
     bool checkOverRun();
-    
+
     ~Arena();
 
     friend std::ostream& operator<<(std::ostream&, const Arena&);
 
 };
-
 
 
 //bool check(const Prey& prey, const Predator& predator) {
