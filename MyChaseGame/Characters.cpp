@@ -65,7 +65,7 @@ bool Character::isNPC() { return npc; }
 
 Prey::Prey(const std::string& name, const Point2D& location, bool npcFlag) : Character(name, location, npcFlag) {   }
 
-int Prey::askDirection() {
+int Prey::askDirection() { 
 
     do {
 
@@ -75,7 +75,7 @@ int Prey::askDirection() {
         cout << "4 - вверх - влево, 5 - вверх-вправо, 6 - вниз-вправо, 7 - вниз-влево \n";
         cin >> direction;
 
-        if (direction <= 7 && direction >= 0) {
+        if (direction <= 7 && direction >= 0) { //проверка на корректный ввод
             return direction;
         }
         else cout << "Некорректный ввод, попробуй ещё раз \n" << endl;
@@ -84,7 +84,7 @@ int Prey::askDirection() {
 
 }
 
-void Prey::autoMove() {
+void Prey::autoMove() { //рандомный ход жертвы
 
     int direction = 0;
 

@@ -13,17 +13,17 @@ private:
 
 public:
 
-    Character(const std::string& name, const Point2D& location, bool npcFlag = 0);
+    Character(const std::string& name, const Point2D& location, bool npcFlag = 0); //конструктор
 
-    void moveTo(Point2D point);
+    void moveTo(Point2D point); // перемещение персонажа на заданную точку
 
     //0 - вверх 1 - вправо 2 - вниз 3 - влево 4 - вверх-влево 
     //5 - вверх-вправо 6 - вниз-вправо 7 - вниз-влево
-    void moveTo(int direction, int steps);
+    void moveTo(int direction, int steps); // перемещение персонажа на некоторое кол-во шагов в некотором направлении
 
     Point2D getLocation();
 
-    bool isNPC();
+    bool isNPC(); // индикатор персонажа
 
     virtual void autoMove() = 0;
 };
@@ -32,7 +32,7 @@ class Prey : public Character {
 
 private:
 
-    const int maxRange = 1;
+    const int maxRange = 1; // жертва может ходить в любом направлении на 1 клетку
 
 public:
 
@@ -47,20 +47,20 @@ public:
 class Predator : public Character {
 private:
 
-    const int maxRange = 5;
+    const int maxRange = 5; // хищник ходит на 5 клеток по пярмым, вверх, вниз, вправо, влево
 
 public:
     Predator(const std::string& name, const Point2D& location, bool npcFlag = 0)
         : Character(name, location, npcFlag) {   }
 
-    int askRange() {
+    int askRange() { // спрашиваем пользователя, на кокое количество клеток сходить
 
         do {
             int range;
             std::cout << "На сколько? (1-5) \n";
             std::cin >> range;
 
-            if (range >= 1 && range <= maxRange) {
+            if (range >= 1 && range <= maxRange) { // проверяем на корректрнй ввод
                 return range;
             }
             else std::cout << "Некорректный ввод, попробуй ещё раз \n";
@@ -68,7 +68,7 @@ public:
         } while (true);
     }
 
-    int askDirection() {
+    int askDirection() { // спрашиваем направление 
         do {
 
             int direction(0);
@@ -76,7 +76,7 @@ public:
             std::cout << "0 - вверх, 1 - вправо, 2 - вниз, 3 - влево,\n";
             std::cin >> direction;
 
-            if (direction <= 3 && direction >= 0) {
+            if (direction <= 3 && direction >= 0) { // проверяем корректность ввода
                 return direction;
             }
             else std::cout << "Некорректный ввод, попробуй ещё раз \n";
@@ -85,7 +85,7 @@ public:
 
     }
 
-    void autoMove() override {
+    void autoMove() override { // рандомный ход
 
         int direction = 0;
         int range = 0;

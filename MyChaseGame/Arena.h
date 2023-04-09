@@ -15,13 +15,13 @@ class Arena {
 
 public:
 
-    Arena(int l, int w, Prey* prey, Predator* predator);
+    Arena(int l, int w, Prey* prey, Predator* predator); // онструктор
 
-    void clearStep();
-    bool checkOverRun();
+    void clearStep();  //удаление хищника и жертвы с арены
+    bool checkOverRun(); //проверка на выход за пределы арены
 
-    ~Arena();
+    ~Arena(); //ƒеструтор
 
-    friend std::ostream& operator<<(std::ostream&, const Arena&);
+    friend std::ostream& operator<<(std::ostream&, const Arena&); //перегрузка оператора вывода
 
 };
