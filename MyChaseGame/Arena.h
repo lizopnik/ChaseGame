@@ -14,5 +14,4 @@ public:
     int get_l() { return length; }
     int get_w() { return width; }
     friend std::ostream& operator<<(std::ostream&, const Arena&);
-
 };

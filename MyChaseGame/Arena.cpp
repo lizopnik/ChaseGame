@@ -1,63 +1,24 @@
-ostream& operator<<(ostream& out, const Arena& a) {
-    cout << "\033[2J\033[1;1H";
-    cout << "   ";
-    for (int i = 0; i < a.width; i++) cout << i + 1 << " ";
-    cout << "\n  ";
-    for (int i = 0; i < a.width + 1; i++) cout << "--";
-    cout << "\n";
-    for (int i = 0; i < a.length; i++) {
-        if ((i + 1) / 10 == 0) cout << i + 1 << " |";
-        else cout << i + 1 << "|";
-        if (a.prey->location.y == i + 1 && a.predator->location.y == i + 1) {
-            if (a.prey->location.x > a.predator->location.x) {
-                for (int j = 1; j < a.predator->location.x; j++) {
-                    cout << "  ";
-                }
-                cout << "Õ ";
-                for (int j = a.predator->location.x + 1; j < a.prey->location.x; j++) {
-                    cout << "  ";
-                }
-                cout << "Æ ";
-                for (int j = a.prey->location.x + 1; j <= a.width; j++) {
-                    cout << "  ";
-                }
+#include "Arena.h"
+
+std::ostream& operator<<(std::ostream& out, const Arena& a) {
+    for (int i = 0; i < a.width + 1; i++) {
+        for (int j = 0; j < a.length + 1; j++) {
+            if (i == 0) {
+                if (j > 9) out << "  " << j;
+                else out << "   " << j;
             }
-            else if (a.predator->location.x > a.prey->location.x) {
-                for (int j = 1; j < a.prey->location.x; j++) {
-                    cout << "  ";
+            else {
+                if (j == 0) {
+                    if (i > 9) out << "  " << i << "  ";
+                    else out << "   " << i << "  ";
                 }
-                cout << "Æ ";
-                for (int j = a.prey->location.x + 1; j < a.predator->location.x; j++) {
-                    cout << "  ";
-                }
-                cout << "Õ ";
-                for (int j = a.predator->location.x + 1; j <= a.width; j++) {
-                    cout << "  ";
-                }
-            }
-            else if (a.predator->location.x == a.prey->location.x) {
-                for (int j = 1; j < a.predator->location.x; j++) cout << "  ";
-                cout << "Õ ";
-                for (int j = a.predator->location.x; j < a.width; j++) cout << "  ";
+                else if ((i == a.prey->getLocation().get_x()) && (j == a.prey->getLocation().get_y())) out << "_O_|";
+                else if ((i == a.predator->getLocation().get_x()) && (j == a.prey->getLocation().get_y())) out << "_X_|";
+                else out << "___|";
             }
         }
-        else if (a.prey->location.y == i + 1) {
-            for (int j = 1; j < a.prey->location.x; j++) cout << "  ";
-            cout << "Æ ";
-            for (int j = a.prey->location.x; j < a.width; j++) cout << "  ";
-        }
-        else if (a.predator->location.y == i + 1) {
-            for (int j = 1; j < a.predator->location.x; j++) cout << "  ";
-            cout << "Õ ";
-            for (int j = a.predator->location.x; j < a.width; j++) cout << "  ";
-        }
-        else if (a.prey->location.y != i + 1 && a.predator->location.y != i + 1) {
-            for (int j = 0; j < a.width; j++) cout << "  ";
-        }
-        cout << "|\n";
+        out << "\n";
+
     }
-    cout << "  ";
-    for (int i = 0; i < a.width + 1; i++) cout << "--";
-    cout << "\n";
     return out;
 }
