@@ -27,7 +27,7 @@ public:
 
     bool isNPC();
 
-    virtual void autoMove() = 0;
+    //virtual void autoMove() = 0;
 };
 
 class Prey : public Character {
