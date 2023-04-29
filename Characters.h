@@ -26,6 +26,8 @@ public:
     bool isNPC();
 
     virtual void autoMove() = 0; 
+
+    std::string getName() { return name; }
 };
 
 class Prey : public Character {
